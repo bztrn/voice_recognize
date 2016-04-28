@@ -8,13 +8,15 @@
 <body>
 	<p id="ola">Olá, você falou:</p>
  
-<div id="traducao"></div>
+<div id="transcript"></div>
  
 <button id="rect">Gravar</button>
  
 <span id="unsupported" class="hidden">API não suportada</span>
 </body>
+<script src="js/recognizer.js"></script>
 <script>
+
 	document.querySelector("#rect").addEventListener("click",function(){
 		try {
             recognizer.start();
