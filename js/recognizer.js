@@ -21,6 +21,7 @@ recognizer.onresult = function(event){
         	transcript.textContent += event.results[i][0].transcript;
 		}
 	}
+	responsiveVoice.speak(transcript.textContent,"Brazilian Portuguese Female");
 
 
 
