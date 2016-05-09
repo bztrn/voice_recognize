@@ -8,7 +8,12 @@ if (window.SpeechRecognition === null) {
 	//......
 }
 
-var recognizer = new window.SpeechRecognition();
+var msg = new SpeechSynthesisUtterance();
+var voices = window.speechSynthesis.getVoices();
+msg.voice = voices[10]; // Note: some voices don't support altering params
+msg.voiceURI = 'native';
+msg.lang = 'pt-BR';
+
 
 var transcript = document.getElementById("transcript");
 
@@ -21,7 +26,7 @@ recognizer.onresult = function(event){
         	transcript.textContent += event.results[i][0].transcript;
 		}
 	}
-	responsiveVoice.speak(transcript.textContent,"Brazilian Portuguese Female");
+	speechSynthesis.speak("Você disse: " + transcript.textContent);
 
 
 
