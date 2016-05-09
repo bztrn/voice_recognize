@@ -11,6 +11,9 @@ if (window.SpeechRecognition === null) {
 var recognizer = new window.SpeechRecognition();
 
 var transcript = document.getElementById("transcript");
+var msg = new SpeechSynthesisUtterance();
+var voices = window.speechSynthesis.getVoices();
+
 
 recognizer.onresult = function(event){
 	transcript.textContent = "";
@@ -21,12 +24,16 @@ recognizer.onresult = function(event){
         	transcript.textContent += event.results[i][0].transcript;
 		}
 	}
-	var msg = new SpeechSynthesisUtterance();
-	var voices = window.speechSynthesis.getVoices();
 	msg.voice = voices[10]; // Note: some voices don't support altering params
 	msg.voiceURI = 'native';
+	msg.volume = 1; // 0 to 1
 	msg.text = transcript.textContent;
 	msg.lang = 'pt-BR';
+
+	msg.onend = function(e) {
+	  console.log('Finished in ' + event.elapsedTime + ' seconds.');
+	};
+
 	speechSynthesis.speak("Você disse: " + msg);
 
 
