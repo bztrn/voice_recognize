@@ -12,7 +12,8 @@ var msg = new SpeechSynthesisUtterance();
 var voices = window.speechSynthesis.getVoices();
 msg.voice = voices[10]; // Note: some voices don't support altering params
 msg.voiceURI = 'native';
-msg.lang = 'pt-BR';
+
+
 
 
 var transcript = document.getElementById("transcript");
@@ -26,7 +27,9 @@ recognizer.onresult = function(event){
         	transcript.textContent += event.results[i][0].transcript;
 		}
 	}
-	speechSynthesis.speak("Você disse: " + transcript.textContent);
+	msg.text = transcript.textContent;
+	msg.lang = 'pt-BR';
+	speechSynthesis.speak("Você disse: " + msg);
 
 
 
