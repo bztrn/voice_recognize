@@ -14,7 +14,7 @@ msg.voice = voices[10]; // Note: some voices don't support altering params
 msg.voiceURI = 'native';
 
 
-
+var recognizer = new window.SpeechRecognition();
 
 var transcript = document.getElementById("transcript");
 
