@@ -8,12 +8,6 @@ if (window.SpeechRecognition === null) {
 	//......
 }
 
-var msg = new SpeechSynthesisUtterance();
-var voices = window.speechSynthesis.getVoices();
-msg.voice = voices[10]; // Note: some voices don't support altering params
-msg.voiceURI = 'native';
-
-
 var recognizer = new window.SpeechRecognition();
 
 var transcript = document.getElementById("transcript");
@@ -27,6 +21,10 @@ recognizer.onresult = function(event){
         	transcript.textContent += event.results[i][0].transcript;
 		}
 	}
+	var msg = new SpeechSynthesisUtterance();
+	var voices = window.speechSynthesis.getVoices();
+	msg.voice = voices[10]; // Note: some voices don't support altering params
+	msg.voiceURI = 'native';
 	msg.text = transcript.textContent;
 	msg.lang = 'pt-BR';
 	speechSynthesis.speak("Você disse: " + msg);
